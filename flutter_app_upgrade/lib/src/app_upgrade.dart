@@ -61,6 +61,7 @@ class AppUpgrade {
     double borderRadius = 20.0,
     String iosAppId,
     AppMarketInfo appMarketInfo,
+    VoidCallback onNoUpgrade,
     VoidCallback onCancel,
     VoidCallback onOk,
     DownloadProgressCallback downloadProgress,
@@ -87,6 +88,8 @@ class AppUpgrade {
             onOk: onOk,
             downloadProgress: downloadProgress,
             downloadStatusChange: downloadStatusChange);
+      } else {
+        onNoUpgrade?.call();
       }
     }).catchError((onError) {
       print('$onError');
