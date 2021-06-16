@@ -173,7 +173,7 @@ class _SimpleAppUpgradeWidget extends State<SimpleAppUpgradeWidget> {
   ///
   _buildTitle() {
     return Padding(
-        padding: EdgeInsets.only(top: 20, bottom: 30),
+        padding: EdgeInsets.only(top: 20, bottom: 10),
         child: Text(widget.title ?? '',
             style: widget.titleStyle ?? TextStyle(fontSize: 22)));
   }
@@ -182,17 +182,23 @@ class _SimpleAppUpgradeWidget extends State<SimpleAppUpgradeWidget> {
   /// 构建版本更新信息
   ///
   _buildAppInfo() {
-    return Container(
-        padding: EdgeInsets.only(left: 15, right: 15, bottom: 30),
-        height: 200,
-        child: ListView(
-          children: widget.contents.map((f) {
-            return Text(
-              f,
-              style: widget.contentStyle ?? TextStyle(),
-            );
-          }).toList(),
-        ));
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        minHeight: 100,
+        maxHeight: 200,
+      ),
+      child: Container(
+          padding: EdgeInsets.only(left: 15, right: 15, bottom: 20),
+          child: ListView(
+            shrinkWrap: true,
+            children: widget.contents.map((f) {
+              return Text(
+                f,
+                style: widget.contentStyle ?? TextStyle(),
+              );
+            }).toList(),
+          )),
+    );
   }
 
   ///
