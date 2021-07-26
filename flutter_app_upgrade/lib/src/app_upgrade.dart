@@ -29,6 +29,8 @@ class AppUpgrade {
   ///
   /// `okTextStyle`：升级按钮文字样式
   ///
+  /// `downText`：下载中升级按钮文字，默认"正在下载"
+  ///
   /// `okBackgroundColors`：升级按钮背景颜色，需要2种颜色，左到右线性渐变,默认是系统的[primaryColor,primaryColor]
   ///
   /// `progressBarColor`：下载进度条颜色
@@ -56,6 +58,7 @@ class AppUpgrade {
     TextStyle cancelTextStyle,
     String okText,
     TextStyle okTextStyle,
+    String downText,
     List<Color> okBackgroundColors,
     Color progressBarColor,
     double borderRadius = 20.0,
@@ -80,6 +83,7 @@ class AppUpgrade {
             okBackgroundColors: okBackgroundColors,
             okText: okText,
             okTextStyle: okTextStyle,
+            downText: downText,
             borderRadius: borderRadius,
             progressBarColor: progressBarColor,
             iosAppId: iosAppId,
@@ -111,6 +115,7 @@ class AppUpgrade {
     TextStyle cancelTextStyle,
     String okText,
     TextStyle okTextStyle,
+    String downText,
     List<Color> okBackgroundColors,
     Color progressBarColor,
     double borderRadius = 20.0,
@@ -134,30 +139,30 @@ class AppUpgrade {
                     borderRadius:
                         BorderRadius.all(Radius.circular(borderRadius))),
                 child: SimpleAppUpgradeWidget(
-                  title: title,
-                  titleStyle: titleStyle,
-                  contents: contents,
-                  contentStyle: contentStyle,
-                  cancelText: cancelText,
-                  cancelTextStyle: cancelTextStyle,
-                  okText: okText,
-                  okTextStyle: okTextStyle,
-                  okBackgroundColors: okBackgroundColors ??
-                      [
-                        Theme.of(context).primaryColor,
-                        Theme.of(context).primaryColor
-                      ],
-                  progressBarColor: progressBarColor,
-                  borderRadius: borderRadius,
-                  downloadUrl: apkDownloadUrl,
-                  force: force,
-                  iosAppId: iosAppId,
-                  appMarketInfo: appMarketInfo,
+                    title: title,
+                    titleStyle: titleStyle,
+                    contents: contents,
+                    contentStyle: contentStyle,
+                    cancelText: cancelText,
+                    cancelTextStyle: cancelTextStyle,
+                    okText: okText,
+                    okTextStyle: okTextStyle,
+                    downText: downText,
+                    okBackgroundColors: okBackgroundColors ??
+                        [
+                          Theme.of(context).primaryColor,
+                          Theme.of(context).primaryColor
+                        ],
+                    progressBarColor: progressBarColor,
+                    borderRadius: borderRadius,
+                    downloadUrl: apkDownloadUrl,
+                    force: force,
+                    iosAppId: iosAppId,
+                    appMarketInfo: appMarketInfo,
                     onCancel: onCancel,
                     onOk: onOk,
                     downloadProgress: downloadProgress,
-                    downloadStatusChange: downloadStatusChange
-                )),
+                    downloadStatusChange: downloadStatusChange)),
           );
         });
   }

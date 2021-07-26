@@ -20,6 +20,7 @@ class SimpleAppUpgradeWidget extends StatefulWidget {
       this.cancelTextStyle,
       this.okText,
       this.okTextStyle,
+      this.downText,
       this.okBackgroundColors,
       this.progressBar,
       this.progressBarColor,
@@ -72,6 +73,11 @@ class SimpleAppUpgradeWidget extends StatefulWidget {
   /// 确认控件样式
   ///
   final TextStyle okTextStyle;
+
+  ///
+  /// 确认控件
+  ///
+  final String downText;
 
   ///
   /// 确认控件背景颜色,2种颜色左到右线性渐变
@@ -282,7 +288,10 @@ class _SimpleAppUpgradeWidget extends State<SimpleAppUpgradeWidget> {
         child: Container(
           height: 45,
           alignment: Alignment.center,
-          child: Text(widget.okText ?? '立即体验',
+          child: Text(
+              _downloadStatus == DownloadStatus.none
+                  ? (widget.okText ?? '立即体验')
+                  : (widget.downText ?? '正在下载'),
               style: widget.okTextStyle ?? TextStyle(color: Colors.white)),
         ),
         onTap: () {
@@ -357,7 +366,7 @@ class _SimpleAppUpgradeWidget extends State<SimpleAppUpgradeWidget> {
     } catch (e) {
       print('$e');
       _downloadProgress = 0;
-      _updateDownloadStatus(DownloadStatus.error,error: e);
+      _updateDownloadStatus(DownloadStatus.error, error: e);
     }
   }
 
